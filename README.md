@@ -4,12 +4,15 @@
 
 ```
 playGame() {
-  while(true) {
+  while(!gameOver()) {
     getInput()
     if (directionChanged()) updateDirectionHead()
     updateDirectionTail()
 
-    if (hasEatenBlock()) growSnake()
+    if (hasEatenBlock()) {
+      growSnake()
+      incrementScore()
+    }
     else if (hasReachedEdge() || hasHitSelf()) gameOver()
     else moveSnake()
 
