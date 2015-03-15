@@ -6,10 +6,14 @@
 * Attempt to instill "good practice" concepts---no ugly hacks, programming (for something this simple) should be straightforward and make sense.
 
 ### General Structure:
-* In HTML, after setting HTML5 canvas, call `playGame()`
+* In HTML, set up HTML5 canvas, set JavaScript parameters (especially if using a canvas sized to window dimensions), set up `Play Game` button that calls JS function `playGame()`
 * Pseudocode:
 ```
 playGame() {
+  // Initialization of game: setting snake direction, position
+
+  setTarget()
+
   while(!gameOver()) {
     getInput()
     if (directionChanged()) updateDirectionHead()
@@ -18,6 +22,7 @@ playGame() {
     if (hasEatenBlock()) {
       growSnake()
       incrementScore()
+      setTarget()
     }
     else if (hasReachedEdge() || hasHitSelf()) gameOver()
     else moveSnake()
@@ -26,6 +31,7 @@ playGame() {
   }
 }
 ```
+* Score will be displayed on HTML element that gets overwritten on each `incrementScore()` call
 
 ### JavaScript Implementation:
 
@@ -68,3 +74,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 ```
+* Setting a target requires generating a random number
+    * `Math.random()` genearates random decimal
+    * `Math.floor((Math.random() * b) + a);` returns a random int between a and b (use this with canvas dimensions)
