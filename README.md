@@ -3,7 +3,7 @@
 * Must be in as few files as possible to reduce complexity and room for error.
     * Ideally, we can contain the entire project in a single `.js` file.
 * Write no lines of code that cannot be explained at a high school, beginner level.
-* Attempt to instill "good practice" concepts---no ugly hacks, programming (for something this simple) should be straightforward and make sense.
+* Attempt to instill "good practice" concepts: no ugly hacks, programming (for something this simple) should be straightforward and make sense.
 
 ### General Structure:
 * In HTML, set up HTML5 canvas, set JavaScript parameters (especially if using a canvas sized to window dimensions), set up `Play Game` button that calls JS function `playGame()`
