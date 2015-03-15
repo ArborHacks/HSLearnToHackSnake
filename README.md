@@ -55,7 +55,7 @@ var tailDirection = 0;
     * Stack/queue in direction changing
     * Algorithmic complexity in moving the snake
 
-### JavaScript Technical Challenges:
+### JavaScript Technical Details:
 * Queues
     * It appears that JS arrays have a `.push()` function to enqueue and a `.shift()` function to dequeue and return the top of the queue
     * Unfortunately, `.shift()` is not O(1), but the queue (probably) won't be large enough at any point in time for this to be an issue
@@ -77,3 +77,7 @@ document.addEventListener('keydown', function(event) {
 * Setting a target requires generating a random number
     * `Math.random()` genearates random decimal
     * `Math.floor((Math.random() * b) + a);` returns a random int between a and b (use this with canvas dimensions)
+* Gameboard fitted to window dimensions (or fraction of window dimensions)
+    * It appears that sizing relative to the window when creating the canvas object (i.e. `width = 70%`) is not supported
+    * In the JS file, trying `c.width = window.innerWidth * 0.7` (and similar on the height aspect seemed to work well enough)
+    * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets &mdash not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
