@@ -7,6 +7,7 @@
 * As we design we'll note potential opportunities for teaching new concepts
     * Stack/queue used in direction changing
     * Algorithmic complexity in moving the snake
+    * O.O.P. in designating variables in objects (and accessing them)
 
 ### General Structure:
 * In HTML, set up HTML5 canvas, set JavaScript parameters (especially if using a canvas sized to window dimensions), set up `Play Game` button that calls JS function `playGame()`
@@ -44,12 +45,17 @@ setLink(xPos, yPos) {}
 removeLink(xPos, yPos) {}
 ```
 * Globals specifying grid size, block size/color, etc.
-* Local vars in `playGame()` to keep track of head/tail position and head/tail directions (for ease of moving snake, have x and y directions)
+* Local vars in `playGame()` to keep track of head/tail position and head/tail directions (for ease of moving snake, have x and y directions).
+    * Data kept in objects for simplicity and cleanliness (O.O.P. concepts)
 ```javascript
-var headPosX = 2; var headPosY = 3; // starting at (2, 3) arbitrarily
-var headDirX = 1; var headDirY = 0; // moving right arbitrarily
-var tailPosX = 2; var tailPosY = 3;
-var tailDirX = 1; var tailDirY = 0;
+  var head = { // keeps track of head position/direction
+    posX:2, posY:3, // starting at (2, 3) arbitrarily
+    dirX:1, dirY:0 // moving right arbitrarily
+  };
+  var tail = { // keeps track of tail position/direction
+    posX:2, posY:3,
+    dirX:1, dirY:0
+  };
 ```
 * Mechanics of moving forward: increment "head" in direction of motion and `setLink`, `removeLink` on tail position and increment tail in direction of motion
 * Mechanics of turning: "head" direction gets updated to new input (from keyboard), 3-tuple containing x-coordinate, y-coordinate, and newDirection gets placed in queue, and at each step tail checks if top of queue is its position (and eventually updates direction accordingly)

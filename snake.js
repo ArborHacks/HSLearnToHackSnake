@@ -30,11 +30,15 @@ function initCanvas() {
 }
 
 function playGame() {
-  var headPosX = 2; var headPosY = 3; 
-  var headDirX = 1; var headDirY = 0;
+  var head = {
+    posX:2, posY:3, // starting at (2, 3) arbitrarily
+    dirX:1, dirY:0 // moving right arbitrarily
+  };
 
-  var tailPosX = 2; var tailPosY = 3;
-  var tailDirX = 1; var tailDirY = 0;
+  var tail = {
+    posX:2, posY:3,
+    dirX:1, dirY:0
+  };
 
-  setLink(headPosX, headPosY);
+  setLink(head.posX, head.posY);
 }
