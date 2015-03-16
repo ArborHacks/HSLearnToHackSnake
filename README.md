@@ -43,12 +43,13 @@ playGame() {
 setLink(xPos, yPos) {}
 removeLink(xPos, yPos) {}
 ```
-* And in additional to globals specifying grid size, block size/color, etc., it'll probably be easiest to keep head/tail information as globals as well:
+* Globals specifying grid size, block size/color, etc.
+* Local vars in `playGame()` to keep track of head/tail position and head/tail directions (for ease of moving snake, have x and y directions)
 ```javascript
-var headPosX = 0; var headPosY = 0;
-var headDirection = 0;
-var tailPosX = 0; var tailPos Y = 0;
-var tailDirection = 0;
+var headPosX = 2; var headPosY = 3; // starting at (2, 3) arbitrarily
+var headDirX = 1; var headDirY = 0; // moving right arbitrarily
+var tailPosX = 2; var tailPosY = 3;
+var tailDirX = 1; var tailDirY = 0;
 ```
 * Mechanics of moving forward: increment "head" in direction of motion and `setLink`, `removeLink` on tail position and increment tail in direction of motion
 * Mechanics of turning: "head" direction gets updated to new input (from keyboard), 3-tuple containing x-coordinate, y-coordinate, and newDirection gets placed in queue, and at each step tail checks if top of queue is its position (and eventually updates direction accordingly)
@@ -60,9 +61,9 @@ var tailDirection = 0;
     * It appears that JS arrays have a `.push()` function to enqueue and a `.shift()` function to dequeue and return the top of the queue
     * Unfortunately, `.shift()` is not O(1), but the queue (probably) won't be large enough at any point in time for this to be an issue
 * Getting keyboard input from user
-    * Add an event listener to the document to register keypresses.
-        * May have to be asynchonous/non-blocking to work in our "infinite" while loop. More on this [here](http://javascript.info/tutorial/keyboard-events).
-    * On registering keypress, set certain global vars that are used in `playGame()` to change snake direction (possibly able to set up more elegantly without global state)
+    * Add an event listener to the document to register key-presses.
+        * May have to be asynchronous/non-blocking to work in our "infinite" while loop. More on this [here](http://javascript.info/tutorial/keyboard-events).
+    * On registering key-press, set certain global vars that are used in `playGame()` to change snake direction (possibly able to set up more elegantly without global state)
     * Example from Stack Overflow:
 ```javascript
 document.addEventListener('keydown', function(event) {
@@ -75,10 +76,9 @@ document.addEventListener('keydown', function(event) {
 });
 ```
 * Setting a target requires generating a random number
-    * `Math.random()` genearates random decimal
+    * `Math.random()` generates random decimal
     * `Math.floor((Math.random() * b) + a);` returns a random int between a and b (use this with canvas dimensions)
 * Gameboard fitted to window dimensions (or fraction of window dimensions)
     * It appears that sizing relative to the window when creating the canvas object (i.e. `width = 70%`) is not supported
     * In the JS file, trying `c.width = window.innerWidth * 0.7` (and similar on the height aspect seemed to work well enough)
     * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets &mdash not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
-* Determining if 

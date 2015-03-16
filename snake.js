@@ -27,6 +27,14 @@ function initCanvas() {
   CANVAS_ELEMENT.height = GRID_LENGTH * Math.floor(window.innerHeight * 0.8 / GRID_LENGTH);
   X_DIM = CANVAS_ELEMENT.width / GRID_LENGTH;
   Y_DIM = CANVAS_ELEMENT.height / GRID_LENGTH;
+}
 
-  setLink(2, 3);
+function playGame() {
+  var headPosX = 2; var headPosY = 3; 
+  var headDirX = 1; var headDirY = 0;
+
+  var tailPosX = 2; var tailPosY = 3;
+  var tailDirX = 1; var tailDirY = 0;
+
+  setLink(headX, headY);
 }
