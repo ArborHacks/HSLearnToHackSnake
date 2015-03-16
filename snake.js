@@ -36,5 +36,5 @@ function playGame() {
   var tailPosX = 2; var tailPosY = 3;
   var tailDirX = 1; var tailDirY = 0;
 
-  setLink(headX, headY);
+  setLink(headPosX, headPosY);
 }
