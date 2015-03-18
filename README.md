@@ -88,3 +88,16 @@ document.addEventListener('keydown', function(event) {
     * It appears that sizing relative to the window when creating the canvas object (i.e. `width = 70%`) is not supported
     * In the JS file, trying `c.width = window.innerWidth * 0.7` (and similar on the height aspect seemed to work well enough)
     * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets &mdash not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
+
+### Delegation
+* Andrew:
+    * Move snake mechanism
+    * Loop with delay
+    * User input (from keyboard)
+    * Checking hit self
+    * Updating direction
+* Sydney:
+    * All bounds checking
+    * Growing snake
+    * Incrementing score
+    * Setting target
