@@ -41,4 +41,6 @@ function playGame() {
   };
 
   setLink(head.posX, head.posY);
+  setLink(0,0);
+  setLink(X_DIM - 1, Y_DIM - 1);
 }
