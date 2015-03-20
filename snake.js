@@ -21,6 +21,10 @@ var TAIL = {
   xDir:1, yDir:0
 }
 
+var TARGET = {
+  xPos: 0, yPos: 0
+};
+
 var turnQueue = [];
 var linkArray = [];
 
@@ -29,13 +33,11 @@ var SCORE = 0;
 function setLink(xPos, yPos) {
   CANVAS.fillStyle = LINK_COLOR;
   CANVAS.fillRect(xPos * GRID_LENGTH, yPos * GRID_LENGTH, LINK_LENGTH, LINK_LENGTH);
-  linkArray[xPos][yPos] = 1;
 }
 
 function removeLink(xPos, yPos) {
   CANVAS.fillStyle = GRID_COLOR;
   CANVAS.fillRect(xPos * GRID_LENGTH, yPos * GRID_LENGTH, LINK_LENGTH, LINK_LENGTH);
-  linkArray[xPos][yPos] = 0;
 }
 
 function getKeyInput(event) {
@@ -64,6 +66,12 @@ function getKeyInput(event) {
   }
 }
 
+function setTarget() {
+  TARGET.xPos = Math.floor(Math.random() * X_DIM);
+  TARGET.yPos = Math.floor(Math.random() * Y_DIM);
+  setLink(TARGET.xPos, TARGET.yPos);
+}
+
 function initCanvas() {
   CANVAS_ELEMENT = document.getElementById("gameboard");
   CANVAS = CANVAS_ELEMENT.getContext("2d");
@@ -88,12 +96,26 @@ function initCanvas() {
 
   document.getElementById("playGameButton").innerHTML = "Play Game"
   document.getElementById("playGameButton").onclick = runGame;
+
+  setTarget();
 }
 
 function gameOver() {
   document.getElementById("playGameButton").innerHTML = "Play Again?";
   document.getElementById("playGameButton").onclick = initCanvas;
   clearInterval(INTERVAL_ID);
+}
+
+function checkBounds(xPos, yPos) {
+  if (xPos < 0 || xPos >= X_DIM) {
+    gameOver();
+    return false;
+  }
+  else if (yPos < 0 || yPos >= Y_DIM) {
+    gameOver();
+    return false;
+  }
+  return true;
 }
 
 function moveSnake() {
@@ -105,11 +127,25 @@ function moveSnake() {
     return;
   }
 
+  if (!checkBounds(HEAD.xPos, HEAD.yPos)) return;
   setLink(HEAD.xPos, HEAD.yPos);
+  linkArray[HEAD.xPos][HEAD.yPos] = 1;
 
   removeLink(TAIL.xPos, TAIL.yPos);
+  linkArray[TAIL.xPos][TAIL.yPos] = 0;
   TAIL.xPos += TAIL.xDir;
   TAIL.yPos += TAIL.yDir;
+}
+
+function growSnake() {
+  HEAD.xPos += HEAD.xDir;
+  HEAD.yPos += HEAD.yDir;
+  //setLink(HEAD.xPos, HEAD.yDir);
+  linkArray[HEAD.xPos][HEAD.yPos] = 1;
+
+  setTarget();
+
+  SCORE++;
 }
 
 function playGame() {
@@ -119,15 +155,9 @@ function playGame() {
     TAIL = turnQueue.shift();
   }
 
-  // SYDNEY TO DO:
-  
-  // Check bounds (if HEAD has gone out of bounds)
-  // to exit (game over): call "clearInterval(INTERVAL_ID);"
-
-  // Check if snake has eaten target, and if so:
-  //     grow snake
-  //     set new target
-  //     increment score
+  if (HEAD.xPos == TARGET.xPos && HEAD.yPos == TARGET.yPos) {
+    growSnake();
+  }
 
   moveSnake(HEAD, TAIL);
 }
