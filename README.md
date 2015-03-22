@@ -101,3 +101,5 @@ document.addEventListener('keydown', function(event) {
     * Growing snake
     * Incrementing score
     * Setting target
+* Vinay:
+    * Trying to make some parts of the code more readable and in line with the slides/lecture
