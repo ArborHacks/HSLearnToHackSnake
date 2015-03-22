@@ -81,10 +81,14 @@ function initCanvas() {
   X_DIM = CANVAS_ELEMENT.width / GRID_LENGTH;
   Y_DIM = CANVAS_ELEMENT.height / GRID_LENGTH;
 
-  HEAD.xPos = 2; HEAD.yPos = 3;
-  HEAD.xDir = 1; HEAD.yDir = 0;
-  TAIL.xPos = 2; TAIL.yPos = 3;
-  TAIL.xDir = 1; TAIL.yDir = 0;
+  HEAD.xPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
+  HEAD.yPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
+  HEAD.xDir = Math.round(Math.random());
+  HEAD.yDir = Math.round(Math.random());
+  TAIL.xPos = HEAD.xPos;
+  TAIL.yPos = HEAD.yPos;
+  TAIL.xDir = HEAD.xDir;
+  TAIL.yDir = HEAD.yDir;
 
   window.addEventListener("keydown", getKeyInput);
 
