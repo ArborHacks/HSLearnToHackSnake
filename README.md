@@ -1,4 +1,10 @@
 ## High School Learn to Hack Snake
+
+### Tasks
+* Bug: Unfilled "bubble" link when snake eats target
+* Bug: Game does not return to original state on clicking "Play Again"
+* Trying to make some parts of the code more readable and in line with the slides/lecture
+
 ### Educational Requirements:
 * Must be in as few files as possible to reduce complexity and room for error.
     * Ideally, we can contain the entire project in a single `.js` file.
@@ -88,18 +94,3 @@ document.addEventListener('keydown', function(event) {
     * It appears that sizing relative to the window when creating the canvas object (i.e. `width = 70%`) is not supported
     * In the JS file, trying `c.width = window.innerWidth * 0.7` (and similar on the height aspect seemed to work well enough)
     * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets &mdash not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
-
-### Delegation
-* Andrew:
-    * Move snake mechanism
-    * Loop with delay
-    * User input (from keyboard)
-    * Checking hit self
-    * Updating direction
-* Sydney:
-    * All bounds checking
-    * Growing snake
-    * Incrementing score
-    * Setting target
-* Vinay:
-    * Trying to make some parts of the code more readable and in line with the slides/lecture
