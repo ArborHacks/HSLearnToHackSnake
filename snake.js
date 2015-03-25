@@ -104,6 +104,9 @@ function initCanvas() {
 
   while (turnQueue.length > 0) turnQueue.shift();
 
+  SCORE = 0;
+  document.getElementById("scoreDisplay").innerHTML = SCORE;
+
   document.getElementById("playGameButton").innerHTML = "Play Game"
   document.getElementById("playGameButton").onclick = runGame;
 
@@ -157,6 +160,7 @@ function growSnake() {
   setTarget();
 
   SCORE++;
+  document.getElementById("scoreDisplay").innerHTML = SCORE;
 }
 
 function playGame() {
