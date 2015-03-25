@@ -1,8 +1,6 @@
 ## High School Learn to Hack Snake
 
 ### Tasks
-* Bug: Unfilled "bubble" link when snake eats target
-* Bug: Game does not return to original state on clicking "Play Again"
 * Trying to make some parts of the code more readable and in line with the slides/lecture
 
 ### Educational Requirements:
