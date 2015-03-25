@@ -20,7 +20,7 @@ var HEAD = {
 var TAIL = {
   xPos:2, yPos:3,
   xDir:1, yDir:0
-}
+};
 
 var TARGET = {
   xPos: 0, yPos: 0
@@ -74,6 +74,12 @@ function getKeyInput(event) {
 function setTarget() {
   TARGET.xPos = Math.floor(Math.random() * X_DIM);
   TARGET.yPos = Math.floor(Math.random() * Y_DIM);
+
+  while (linkArray[TARGET.xPos][TARGET.yPos]) {
+    TARGET.xPos = Math.floor(Math.random() * X_DIM);
+    TARGET.yPos = Math.floor(Math.random() * Y_DIM);
+  }
+  
   setLink(TARGET.xPos, TARGET.yPos);
 }
 
