@@ -6,13 +6,20 @@
 </head>
 
 <body>
-  <center>
-    <canvas id="gameboard" style="border:1px solid #000000;">
-    </canvas> <br> <br>
-    <button id="playGameButton" onclick="runGame()"/>
+  <center id="preAmble">
+    <h2>Snake!</h2>
+    <p>Don't touch the walls and don't hit yourself! Eating the food will 
+    increase your score (but also your speed!)</p>
   </center>
 
-  <center> <h1 id="scoreDisplay">0</h1> </center>
+  <center>
+    <canvas id="gameboard" style="border:1px solid #000000;">
+    </canvas> <br>
+    <button id="playGameButton" style="width:200;height:30;font-size:20px"
+     onclick="runGame()"/> <br>
+  </center>
+
+  <center> <h1 style="font-size:35px" id="scoreDisplay">0</h1> </center>
 
   <script type="text/javascript">
   initCanvas();
