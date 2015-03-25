@@ -126,12 +126,13 @@ function moveSnake() {
   HEAD.xPos += HEAD.xDir;
   HEAD.yPos += HEAD.yDir;
 
+  if (!checkBounds(HEAD.xPos, HEAD.yPos)) return;
+
   if (linkArray[HEAD.xPos][HEAD.yPos]) { // if has hit self, exit (game over)
     gameOver();
     return;
   }
 
-  if (!checkBounds(HEAD.xPos, HEAD.yPos)) return;
   setLink(HEAD.xPos, HEAD.yPos);
   linkArray[HEAD.xPos][HEAD.yPos] = 1;
 
