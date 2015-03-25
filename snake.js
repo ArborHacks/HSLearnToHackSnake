@@ -10,6 +10,7 @@ var LINK_COLOR = "#FF0000";
 var GRID_COLOR = "#FFFFFF";
 
 var INTERVAL_ID;
+var FPS_INIT = 25;
 var FPS = 25;
 
 var HEAD = {
@@ -107,6 +108,8 @@ function initCanvas() {
   SCORE = 0;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
 
+  FPS = FPS_INIT;
+
   document.getElementById("playGameButton").innerHTML = "Play Game"
   document.getElementById("playGameButton").onclick = runGame;
 
@@ -161,6 +164,8 @@ function growSnake() {
 
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
+
+  FPS += 5; // Increase speed as score goes up!
 }
 
 function playGame() {
