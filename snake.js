@@ -142,10 +142,10 @@ function moveSnake() {
 }
 
 function growSnake() {
-  HEAD.xPos += HEAD.xDir;
-  HEAD.yPos += HEAD.yDir;
-  //setLink(HEAD.xPos, HEAD.yDir);
-  linkArray[HEAD.xPos][HEAD.yPos] = 1;
+  TAIL.xPos -= TAIL.xDir;
+  TAIL.yPos -= TAIL.yDir;
+
+  linkArray[TAIL.xPos][TAIL.yPos] = 1;
 
   setTarget();
 
