@@ -27,6 +27,7 @@ var TARGET = {
 
 var turnQueue = [];
 var linkArray = [];
+var recieveInput = true;
 
 var SCORE = 0;
 
@@ -41,6 +42,9 @@ function removeLink(xPos, yPos) {
 }
 
 function getKeyInput(event) {
+  if (!recieveInput) return;
+  recieveInput = false;
+
   var changed = true;
   if (event.keyCode == 37 && HEAD.xDir == 0) { // left was pressed
     HEAD.xDir = -1;
@@ -167,6 +171,7 @@ function playGame() {
   }
 
   moveSnake(HEAD, TAIL);
+  recieveInput = true;
 }
 
 function runGame() {
