@@ -83,8 +83,8 @@ function initCanvas() {
 
   HEAD.xPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
   HEAD.yPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
-  HEAD.xDir = Math.round(Math.random());
-  HEAD.yDir = Math.round(Math.random());
+  HEAD.xDir = 1;
+  HEAD.yDir = 0;
   TAIL.xPos = HEAD.xPos;
   TAIL.yPos = HEAD.yPos;
   TAIL.xDir = HEAD.xDir;
@@ -97,6 +97,8 @@ function initCanvas() {
     for (var j = 0; j < Y_DIM; ++j) columns[j] = 0;
     linkArray[i] = columns;
   }
+
+  while (turnQueue.length > 0) turnQueue.shift();
 
   document.getElementById("playGameButton").innerHTML = "Play Game"
   document.getElementById("playGameButton").onclick = runGame;
