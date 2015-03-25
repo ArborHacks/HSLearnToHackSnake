@@ -171,7 +171,9 @@ function growSnake() {
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
 
-  FPS += 5; // Increase speed as score goes up!
+  FPS += 1; // Increase speed as score goes up!
+  clearInterval(INTERVAL_ID);
+  INTERVAL_ID = setInterval(playGame, 1000 / FPS);
 }
 
 function playGame() {
