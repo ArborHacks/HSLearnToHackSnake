@@ -8,6 +8,7 @@ var GRID_LENGTH = 20;
 var LINK_LENGTH = 19;
 var LINK_COLOR = "#FF0000";
 var GRID_COLOR = "#FFFFFF";
+var TARGET_COLOR = "#800020"; // :)
 
 var INTERVAL_ID;
 var FPS_INIT = 25;
@@ -32,8 +33,9 @@ var recieveInput = true;
 
 var SCORE = 0;
 
-function setLink(xPos, yPos) {
-  CANVAS.fillStyle = LINK_COLOR;
+function setLink(xPos, yPos, target) {
+  if (target) CANVAS.fillStyle = TARGET_COLOR;
+  else CANVAS.fillStyle = LINK_COLOR;
   CANVAS.fillRect(xPos * GRID_LENGTH, yPos * GRID_LENGTH, LINK_LENGTH, LINK_LENGTH);
 }
 
@@ -80,7 +82,7 @@ function setTarget() {
     TARGET.yPos = Math.floor(Math.random() * Y_DIM);
   }
 
-  setLink(TARGET.xPos, TARGET.yPos);
+  setLink(TARGET.xPos, TARGET.yPos, true);
 }
 
 function initCanvas() {
@@ -151,7 +153,7 @@ function moveSnake() {
     return;
   }
 
-  setLink(HEAD.xPos, HEAD.yPos);
+  setLink(HEAD.xPos, HEAD.yPos, false);
   linkArray[HEAD.xPos][HEAD.yPos] = 1;
 
   removeLink(TAIL.xPos, TAIL.yPos);
