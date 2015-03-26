@@ -194,5 +194,6 @@ function playGame() {
 }
 
 function runGame() {
+  document.getElementById("playGameButton").onclick = null;
   INTERVAL_ID = setInterval(playGame, 1000 / FPS);
 }
