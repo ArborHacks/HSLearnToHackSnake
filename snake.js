@@ -127,6 +127,7 @@ function initCanvas() {
 function gameOver() {
   document.getElementById("playGameButton").innerHTML = "Play Again?";
   document.getElementById("playGameButton").onclick = initCanvas;
+  document.getElementById("selection").style.visibility = "visible";
   clearInterval(INTERVAL_ID);
 }
 
@@ -196,6 +197,12 @@ function playGame() {
 }
 
 function runGame() {
+  if (document.getElementById("easy").checked) FPS = 10;
+  else if (document.getElementById("intermediate").checked) FPS = 15;
+  else if (document.getElementById("difficult").checked) FPS = 25;
+
+  document.getElementById("selection").style.visibility = "hidden";
+
   document.getElementById("playGameButton").onclick = null;
   INTERVAL_ID = setInterval(playGame, 1000 / FPS);
 }
