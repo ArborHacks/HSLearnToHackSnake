@@ -11,8 +11,8 @@ var GRID_COLOR = "#FFFFFF";
 var TARGET_COLOR = "#800020"; // :)
 
 var INTERVAL_ID;
-var FPS_INIT = 25;
-var FPS = 25;
+var FPS_INIT = 15;
+var FPS = 15;
 
 var HEAD = {
   xPos:2, yPos:3, // starting at (2, 3) arbitrarily
@@ -173,9 +173,11 @@ function growSnake() {
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
 
-  FPS += 1; // Increase speed as score goes up!
-  clearInterval(INTERVAL_ID);
-  INTERVAL_ID = setInterval(playGame, 1000 / FPS);
+  if (!(SCORE % 2)) {
+    FPS += 1; // Increase speed as score goes up!
+    clearInterval(INTERVAL_ID);
+    INTERVAL_ID = setInterval(playGame, 1000 / FPS);
+  }
 }
 
 function playGame() {
