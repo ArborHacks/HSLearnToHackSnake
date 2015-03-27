@@ -1,5 +1,7 @@
 ## High School Learn to Hack Snake
 
+### [Play it here!](http://aymarino.github.io/HSLearnToHackSnake/)
+
 ### Tasks
 * Trying to make some parts of the code more readable and in line with the slides/lecture
 
