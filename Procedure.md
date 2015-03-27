@@ -21,6 +21,7 @@ function initCanvas() {
 
   CANVAS_ELEMENT.width = window.innerWidth * 0.65;
   CANVAS_ELEMENT.height = window.innerHeight * 0.7;
+}
 ```
 
 HTML file:
@@ -38,8 +39,7 @@ HTML file:
   </center>
 
   <center>
-    <canvas id="gameboard" style="border:1px solid #000000;">
-    </canvas> <br>
+    <canvas id="gameboard" style="border:1px solid #000000;"></canvas>
   </center>
 
   <script type="text/javascript">
