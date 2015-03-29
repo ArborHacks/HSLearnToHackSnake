@@ -124,9 +124,14 @@ function initCanvas() {
   setTarget();
 }
 
+function restartGame() {
+  initCanvas();
+  runGame();
+}
+
 function gameOver() {
   document.getElementById("playGameButton").innerHTML = "Play Again?";
-  document.getElementById("playGameButton").onclick = initCanvas;
+  document.getElementById("playGameButton").onclick = restartGame;
   document.getElementById("selection").style.visibility = "visible";
   clearInterval(INTERVAL_ID);
 }
