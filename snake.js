@@ -167,9 +167,10 @@ function growSnake() {
   TAIL.xPos -= TAIL.xDir;
   TAIL.yPos -= TAIL.yDir;
 
-  linkArray[TAIL.xPos][TAIL.yPos] = 1;
-
-  setTarget();
+  if (!(TAIL.xPos < 0 || TAIL.yPos < 0)) {
+    linkArray[TAIL.xPos][TAIL.yPos] = 1;
+    setTarget();
+  }
 
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
