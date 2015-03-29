@@ -6,9 +6,9 @@ var Y_DIM;
 
 var GRID_LENGTH = 20;
 var LINK_LENGTH = 19;
-var LINK_COLOR = "#FF0000";
+var LINK_COLOR = "#00274C"; // Blue
 var GRID_COLOR = "#FFFFFF";
-var TARGET_COLOR = "#800020"; // :)
+var TARGET_COLOR = "#FFCB05"; // Maize
 
 var INTERVAL_ID;
 var FPS_INIT = 15;
