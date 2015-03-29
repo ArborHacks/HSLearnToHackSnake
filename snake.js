@@ -6,9 +6,9 @@ var Y_DIM;
 
 var GRID_LENGTH = 20;
 var LINK_LENGTH = 19;
-var LINK_COLOR = "#FF0000";
+var LINK_COLOR = "#00274C"; // Blue
 var GRID_COLOR = "#FFFFFF";
-var TARGET_COLOR = "#800020"; // :)
+var TARGET_COLOR = "#FFCB05"; // Maize
 
 var INTERVAL_ID;
 var FPS_INIT = 15;
@@ -124,9 +124,14 @@ function initCanvas() {
   setTarget();
 }
 
+function restartGame() {
+  initCanvas();
+  runGame();
+}
+
 function gameOver() {
   document.getElementById("playGameButton").innerHTML = "Play Again?";
-  document.getElementById("playGameButton").onclick = initCanvas;
+  document.getElementById("playGameButton").onclick = restartGame;
   document.getElementById("selection").style.visibility = "visible";
   clearInterval(INTERVAL_ID);
 }
@@ -167,9 +172,10 @@ function growSnake() {
   TAIL.xPos -= TAIL.xDir;
   TAIL.yPos -= TAIL.yDir;
 
-  linkArray[TAIL.xPos][TAIL.yPos] = 1;
-
-  setTarget();
+  if (!(TAIL.xPos < 0 || TAIL.yPos < 0)) {
+    linkArray[TAIL.xPos][TAIL.yPos] = 1;
+    setTarget();
+  }
 
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
