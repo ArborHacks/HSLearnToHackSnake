@@ -209,7 +209,7 @@ function growSnake() {
   TAIL.yPos -= TAIL.yDir;
 
   // If tail is not out of bounds, set tail link on canvas and array
-  if (!(TAIL.xPos < 0 || TAIL.yPos < 0)) {
+  if (checkBounds(TAIL.xPos, TAIL.yPos)) {
     linkArray[TAIL.xPos][TAIL.yPos] = 1;
     setTarget();
   }
