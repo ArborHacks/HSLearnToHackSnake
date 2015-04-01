@@ -1,14 +1,20 @@
 ## 1. Index Page and HTML5 Canvas
 
+### Explanation
+* HTML5 Canvas elements
+* Adding JavaScript to HTML file (in header and calling function in body)
+* Putting script into functions to avoid running code when we don't want it to
+
+### Implementation
 * Placing canvas element in body
 * Start of `initCanvas()`:
     * Assigning variables to canvas element (and context)
     * Assigning height and width of canvas
     * Practice with `drawRect()`
 
-### At end of step
+### Project at end of step
 
-Javascript file:
+**Javascript file:**
 ```javascript
 var CANVAS_ELEMENT;
 var CANVAS;
@@ -22,7 +28,7 @@ function initCanvas() {
 }
 ```
 
-HTML file:
+**HTML file:**
 ```html
 <html>
 

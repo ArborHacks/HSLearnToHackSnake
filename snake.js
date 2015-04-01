@@ -7,7 +7,7 @@ var Y_DIM;
 var GRID_LENGTH = 20;
 var LINK_LENGTH = 19;
 var LINK_COLOR = "#00274C"; // Blue
-var GRID_COLOR = "#FFFFFF";
+var GRID_COLOR = "#FFFFFF"; // White
 var TARGET_COLOR = "#FFCB05"; // Maize
 
 var INTERVAL_ID;
