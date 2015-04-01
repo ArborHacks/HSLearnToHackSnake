@@ -3,46 +3,20 @@
 ### [Play it here!](http://aymarino.github.io/HSLearnToHackSnake/)
 
 ### Tasks
-* Trying to make some parts of the code more readable and in line with the slides/lecture
+* Add comments to source code to facilitate making procedure
+* Document logical steps in building game:
+    * Working product at each discrete step, building on last
+    * Create steps to game in current state, with each individual step up to debate for difficultly, implementation, and teaching method
 
 ### Educational Requirements:
 * Must be in as few files as possible to reduce complexity and room for error.
-    * Ideally, we can contain the entire project in a single `.js` file.
-* Write no lines of code that cannot be explained at a high school, beginner level.
-* Attempt to instill "good practice" concepts: no ugly hacks, programming (for something this simple) should be straightforward and make sense.
-* As we design we'll note potential opportunities for teaching new concepts
-    * Stack/queue used in direction changing
-    * Algorithmic complexity in moving the snake
-    * O.O.P. in designating variables in objects (and accessing them)
-
-### General Structure:
-* In HTML, set up HTML5 canvas, set JavaScript parameters (especially if using a canvas sized to window dimensions), set up `Play Game` button that calls JS function `playGame()`
-* Init function to set canvas dimensions, game grid dimensions `initCanvas()`
-* Pseudocode for Snake game playing:
-```
-playGame() {
-  // Initialization of game: setting snake direction, position
-
-  setTarget()
-
-  while(!gameOver()) {
-    getInput()
-    if (directionChanged()) updateDirectionHead()
-    updateDirectionTail()
-
-    if (hasEatenBlock()) {
-      growSnake()
-      incrementScore()
-      setTarget()
-    }
-    else if (hasReachedEdge() || hasHitSelf()) gameOver()
-    else moveSnake()
-
-    sleep(sleepTime)
-  }
-}
-```
-* Score will be displayed on HTML element that gets overwritten on each `incrementScore()` call
+    * Game is fully contained in a single `.js` file
+* No lines that cannot be explained at a high school/beginner level.
+* Attempt to instill "good practice" concepts: programming should be straightforward and ideally as compartmentalized as possible
+* Opportunities for teaching more advanced concepts:
+    * Stack/queue used in direction changing (introduction to data structures)
+    * Algorithmic complexity in moving the snake (program is no slower even as snake grows)
+    * O.O.P. in designating variables as objects
 
 ### JavaScript Implementation:
 * Within each of these higher-level functions, we'll have functions that help with interacting with the "grid" itself
@@ -74,7 +48,6 @@ removeLink(xPos, yPos) {}
     * Unfortunately, `.shift()` is not O(1), but the queue (probably) won't be large enough at any point in time for this to be an issue
 * Getting keyboard input from user
     * Add an event listener to the document to register key-presses.
-        * May have to be asynchronous/non-blocking to work in our "infinite" while loop. More on this [here](http://javascript.info/tutorial/keyboard-events).
     * On registering key-press, set certain global vars that are used in `playGame()` to change snake direction (possibly able to set up more elegantly without global state)
     * Example from Stack Overflow:
 ```javascript
@@ -93,4 +66,4 @@ document.addEventListener('keydown', function(event) {
 * Gameboard fitted to window dimensions (or fraction of window dimensions)
     * It appears that sizing relative to the window when creating the canvas object (i.e. `width = 70%`) is not supported
     * In the JS file, trying `c.width = window.innerWidth * 0.7` (and similar on the height aspect seemed to work well enough)
-    * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets &mdash not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
+    * With dynamic sizing, will need to either keep set "grid" dimensions (thereby resizing the size/aspect ratio of the links/targets, which is not ideal), or set the grid dimensions based on the canvas size (in pixels) to maintain square links
