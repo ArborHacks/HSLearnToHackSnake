@@ -25,6 +25,8 @@ var FPS_INIT = 15;
 var FPS = 15;
 
 var SCORE = 0;
+var DIFFICULTY = 0;
+var TAIL_DELAY = 0;
 
 // HEAD and TAIL objects have (x,y) position and (x,y) direction
 var HEAD = {
@@ -145,6 +147,7 @@ function initCanvas() {
 
   // Reset score and display
   SCORE = 0;
+  TAIL_DELAY = 0;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
 
   FPS = FPS_INIT; // Set initial speed in FPS
@@ -193,33 +196,29 @@ function moveSnake() {
   setLink(HEAD.xPos, HEAD.yPos, false);
   linkArray[HEAD.xPos][HEAD.yPos] = 1;
 
-  // Erase tail link from canvas and link array
-  removeLink(TAIL.xPos, TAIL.yPos);
-  linkArray[TAIL.xPos][TAIL.yPos] = 0;
+  if (TAIL_DELAY == 0) {
+    // Erase tail link from canvas and link array
+    removeLink(TAIL.xPos, TAIL.yPos);
+    linkArray[TAIL.xPos][TAIL.yPos] = 0;
 
-  // Update tail position in direction of motion
-  TAIL.xPos += TAIL.xDir;
-  TAIL.yPos += TAIL.yDir;
+    // Update tail position in direction of motion
+    TAIL.xPos += TAIL.xDir;
+    TAIL.yPos += TAIL.yDir;
+  }
+  else TAIL_DELAY--;
 }
 
 // On snake eating target, grow snake from tail back and increments score
 function growSnake() {
-  // Tail grows one link backwards
-  TAIL.xPos -= TAIL.xDir;
-  TAIL.yPos -= TAIL.yDir;
-
-  // If tail is not out of bounds, set tail link on canvas and array
-  if (checkBounds(TAIL.xPos, TAIL.yPos)) {
-    linkArray[TAIL.xPos][TAIL.yPos] = 1;
-    setTarget();
-  }
+  TAIL_DELAY += DIFFICULTY; // Prevent tail from advancing
+  setTarget();
 
   // Increment and display score
   SCORE++;
   document.getElementById("scoreDisplay").innerHTML = SCORE;
 
   // Increment speed every other time score increments
-  if (!(SCORE % 2)) {
+  if (!(SCORE % (4 - DIFFICULTY))) {
     FPS += 1; // Increase speed as score goes up!
 
     // Set new interval for new framerate
@@ -246,9 +245,18 @@ function playGame() {
 // Initialize snake speed, sets up page for gameplay, and starts framerate
 function runGame() {
   // Set FPS to selected speed from radio buttons
-  if (document.getElementById("easy").checked) FPS = 10;
-  else if (document.getElementById("intermediate").checked) FPS = 15;
-  else if (document.getElementById("difficult").checked) FPS = 25;
+  if (document.getElementById("easy").checked) {
+    FPS = 10;
+    DIFFICULTY = 1;
+  }
+  else if (document.getElementById("intermediate").checked) {
+    FPS = 15;
+    DIFFICULTY = 2;
+  }
+  else if (document.getElementById("difficult").checked) {
+    FPS = 25;
+    DIFFICULTY = 3;
+  }
 
   // Hide speed selection buttons on page
   document.getElementById("selection").style.visibility = "hidden";
