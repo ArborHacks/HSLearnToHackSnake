@@ -69,19 +69,19 @@ function getKeyInput(event) {
 
   // Only change direction if not travelling along specified axis
   var changed = true;
-  if (event.keyCode == 37 && HEAD.xDir == 0) { // left was pressed
+  if ((event.keyCode == 37 || event.keyCode == 65) && HEAD.xDir == 0) { // Left/A was pressed
     HEAD.xDir = -1;
     HEAD.yDir = 0;
   }
-  else if (event.keyCode == 39 && HEAD.xDir == 0) { // Right was pressed
+  else if ((event.keyCode == 39 || event.keyCode == 68) && HEAD.xDir == 0) { // Right/D was pressed
     HEAD.xDir = 1;
     HEAD.yDir = 0;
   }
-  else if (event.keyCode == 38 && HEAD.yDir == 0) { // Up was pressed
+  else if ((event.keyCode == 38 || event.keyCode == 87) && HEAD.yDir == 0) { // Up/W was pressed
     HEAD.xDir = 0;
     HEAD.yDir = -1;
   }
-  else if (event.keyCode == 40 && HEAD.yDir == 0) { // Down was pressed
+  else if ((event.keyCode == 40 || event.keyCode == 83) && HEAD.yDir == 0) { // Down/S was pressed
     HEAD.xDir = 0;
     HEAD.yDir = 1;
   }
@@ -148,7 +148,7 @@ function initCanvas() {
   // Reset score and display
   SCORE = 0;
   TAIL_DELAY = 0;
-  document.getElementById("scoreDisplay").innerHTML = SCORE;
+  document.getElementById("scoreDisplay").innerHTML = "Score: " + SCORE;
 
   FPS = FPS_INIT; // Set initial speed in FPS
 
@@ -215,7 +215,7 @@ function growSnake() {
 
   // Increment and display score
   SCORE++;
-  document.getElementById("scoreDisplay").innerHTML = SCORE;
+  document.getElementById("scoreDisplay").innerHTML = "Score: " + SCORE;
 
   // Increment speed every other time score increments
   if (!(SCORE % (4 - DIFFICULTY))) {

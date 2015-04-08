@@ -3,31 +3,59 @@
 <head>
   <title>Snake!</title>
   <script type="text/javascript" src="snake.js"></script>
+
+  <style>
+    html {
+      background: url(bg.jpg) no-repeat right bottom fixed;
+      background-size: 40% auto;
+    }
+    .text {
+      font-family: Verdana, sans-serif;
+    }
+    #left {
+      width: 20%;
+      position: fixed;
+      float: left;
+      top: 10%;
+    }
+    #right {
+      width: 80%;
+      position: fixed;
+      margin-left: 20%;
+      float: right;
+      top: 10%;
+    }
+    #playGameButton {
+      width: 90%;
+      height: 3%;
+      font-size:20px
+    }
+  </style>
 </head>
 
 <body style="overflow: hidden">
-  <center>
-    <h2>Snake!</h2>
+  <div id="left">
+    <h2 class="text">Snake!</h2>
 
-    <p style="line-height:0.5">An educational project developed by Michigan Hackers 
+    <p class="text">An educational project developed by Michigan Hackers 
     for a high-school level introductory hackathon.</p>
 
-    <form id="selection">
+    <form id="selection" class="text">
       <input type="radio" id="easy" name="selection">Easy
+      <br>
       <input type="radio" id="intermediate" name="selection" checked>
       Intermediate
+      <br>
       <input type="radio" id="difficult" name="selection">Difficult
     </form>
-  </center>
+    <h1 id="scoreDisplay">0</h1>
+    <button id="playGameButton" onclick="runGame()">
+  </div>
 
-  <center>
-    <canvas id="gameboard" style="border:1px solid #000000;">
-    </canvas> <br>
-    <button id="playGameButton" style="width:200;height:30;font-size:20px"
-     onclick="runGame()"/> <br>
-  </center>
-
-  <center> <h1 style="font-size:35px" id="scoreDisplay">0</h1> </center>
+  <div id="right">
+    <canvas id="gameboard" style="border:2px solid #000000;">
+    </canvas>
+  </div>
 
   <script type="text/javascript">
   initCanvas();
