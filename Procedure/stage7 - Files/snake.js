@@ -1,11 +1,3 @@
-//////////////////////////// Javascript Snake ////////////////////////////
-// An educational project developed for Michigan Hackers' Learn to Hack
-// event, an introductory hackathon for high schoolers in Ann Arbor, MI
-// to teach programming and project developement skills at a beginner level.
-
-// Written by Andrew Marino with contributions by Sydney Bigelow and Vinay
-// Hiremath in March 2015
-
 // Canvas element variables
 var CANVAS_ELEMENT;
 var CANVAS;
@@ -14,18 +6,15 @@ var CANVAS;
 var X_DIM;
 var Y_DIM;
 var GRID_LENGTH = 20;
-var LINK_LENGTH = 19; // Separation between links
+var LINK_LENGTH = 19;
 var LINK_COLOR = "#00274C"; // Blue
 var GRID_COLOR = "#FFFFFF"; // White
 var TARGET_COLOR = "#FFCB05"; // Maize
 
 // Speed of gameplay variables
 var INTERVAL_ID;
-var FPS_INIT = 15;
 var FPS = 15;
 
-var SCORE = 0;
-var DIFFICULTY = 0;
 var TAIL_DELAY = 0;
 
 // HEAD and TAIL objects have (x,y) position and (x,y) direction
@@ -58,7 +47,7 @@ function setLink(xPos, yPos, target) {
 // Erase given grid position
 function removeLink(xPos, yPos) {
   CANVAS.fillStyle = GRID_COLOR;
-  CANVAS.fillRect(xPos*GRID_LENGTH, yPos*GRID_LENGTH, LINK_LENGTH, LINK_LENGTH);
+  CANVAS.fillRect(xPos * GRID_LENGTH, yPos * GRID_LENGTH, LINK_LENGTH, LINK_LENGTH);
 }
 
 // On keyboard input, change direction as required
@@ -116,16 +105,14 @@ function initCanvas() {
   CANVAS = CANVAS_ELEMENT.getContext("2d");
 
   // Set dimensions of canvas and gameboard (on virtual "grid")
-  CANVAS_ELEMENT.width = GRID_LENGTH *
-                          Math.floor(window.innerWidth * 0.65 / GRID_LENGTH);
-  CANVAS_ELEMENT.height = GRID_LENGTH *
-                          Math.floor(window.innerHeight * 0.7 / GRID_LENGTH);
+  CANVAS_ELEMENT.width = GRID_LENGTH * Math.floor(window.innerWidth * 0.65 / GRID_LENGTH);
+  CANVAS_ELEMENT.height = GRID_LENGTH * Math.floor(window.innerHeight * 0.7 / GRID_LENGTH);
   X_DIM = CANVAS_ELEMENT.width / GRID_LENGTH;
   Y_DIM = CANVAS_ELEMENT.height / GRID_LENGTH;
 
   // Set initial position of snake (head and tail variables)
-  HEAD.xPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
-  HEAD.yPos = Math.floor((Math.random() * GRID_LENGTH/2) + GRID_LENGTH/4);
+  HEAD.xPos = 2;
+  HEAD.yPos = 3;
   HEAD.xDir = 1;
   HEAD.yDir = 0;
   TAIL.xPos = HEAD.xPos;
@@ -145,13 +132,6 @@ function initCanvas() {
 
   turnQueue = []; // Initialize turn queue to empty
 
-  // Reset score and display
-  SCORE = 0;
-  TAIL_DELAY = 0;
-  document.getElementById("scoreDisplay").innerHTML = "Score: " + SCORE;
-
-  FPS = FPS_INIT; // Set initial speed in FPS
-
   // Set text and action of button on page
   document.getElementById("playGameButton").innerHTML = "Play Game"
   document.getElementById("playGameButton").onclick = runGame;
@@ -165,11 +145,10 @@ function restartGame() {
   runGame();
 }
 
-// Set end-of-game text and action for button and stop frames from updating
+// Stop frames from updating
 function gameOver() {
   document.getElementById("playGameButton").innerHTML = "Play Again?";
   document.getElementById("playGameButton").onclick = restartGame;
-  document.getElementById("selection").style.visibility = "visible";
   clearInterval(INTERVAL_ID);
 }
 
@@ -192,8 +171,7 @@ function moveSnake() {
     return;
   }
 
-  // Set head link on canvas and link array
-  setLink(HEAD.xPos, HEAD.yPos, false);
+  setLink(HEAD.xPos, HEAD.yPos);
   linkArray[HEAD.xPos][HEAD.yPos] = 1;
 
   if (TAIL_DELAY == 0) {
@@ -210,21 +188,8 @@ function moveSnake() {
 
 // On snake eating target, grow snake from tail back and increments score
 function growSnake() {
-  TAIL_DELAY += DIFFICULTY; // Prevent tail from advancing
+  TAIL_DELAY += 1; // Prevent tail from advancing
   setTarget();
-
-  // Increment and display score
-  SCORE++;
-  document.getElementById("scoreDisplay").innerHTML = "Score: " + SCORE;
-
-  // Increment speed every other time score increments
-  if (!(SCORE % (4 - DIFFICULTY))) {
-    FPS += 1; // Increase speed as score goes up!
-
-    // Set new interval for new framerate
-    clearInterval(INTERVAL_ID);
-    INTERVAL_ID = setInterval(playGame, 1000 / FPS);
-  }
 }
 
 // Update snake on each frame
@@ -242,25 +207,8 @@ function playGame() {
   recieveInput = true; // Reset keybpress listener for new "frame"
 }
 
-// Initialize snake speed, sets up page for gameplay, and starts framerate
+// Starts framerate
 function runGame() {
-  // Set FPS to selected speed from radio buttons
-  if (document.getElementById("easy").checked) {
-    FPS = 10;
-    DIFFICULTY = 1;
-  }
-  else if (document.getElementById("intermediate").checked) {
-    FPS = 15;
-    DIFFICULTY = 2;
-  }
-  else if (document.getElementById("difficult").checked) {
-    FPS = 25;
-    DIFFICULTY = 3;
-  }
-
-  // Hide speed selection buttons on page
-  document.getElementById("selection").style.visibility = "hidden";
-
   // Unable to start new "games" in the middle of gameplay
   document.getElementById("playGameButton").onclick = null;
 
