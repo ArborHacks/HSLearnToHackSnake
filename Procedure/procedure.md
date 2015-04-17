@@ -59,7 +59,7 @@ CANVAS.drawRect(10, 15, 20, 30); // 20 by 30 rectangle at pixels (10, 15)
 * Show "concept" of what snake has to look like: square "links" running in a line that moves
     * In this step, we'll show how place these links on the canvas (later, we'll make them move)
 * To be able to do this, there need to be certain positions (rows and columns) along which the links can exists
-    * Motivation of abstracting a "grid" overtop of the canvas
+    * Motivation of abstracting a "grid" over top of the canvas
 * Partitioning the canvas (which is addressed based on pixels) by "blocks" of pixels of the same size that can be used as "grid coordinates"
     * Visuals of pointing to pixels by multiples of a "grid cell length"
 
@@ -195,7 +195,7 @@ function checkBounds(xPos, yPos) {
     * Assign to variable to be able to clear the interval
 * Most languages execute only in the order that the instructions are given. This makes sense for most programs, but sometimes fails when user input is required, or the program must be interactive with a human.
     * If a program comes to a point in execution where it asks for user input, and must wait until one is given, it is said to _stall_, meaning it becomes unresponsive.
-* So, since websites are very often interactive, JavaScript has _asynchonous_ execution, meaning that some functions execute out of order depending on when they need to be called.
+* So, since websites are very often interactive, JavaScript has _asynchronous_ execution, meaning that some functions execute out of order depending on when they need to be called.
     * The interval we set with `setInterval` will call a certain function repeatedly in some interval, but in between those times, the page is not frozen, and it remains interactive in case the user needs to click something else in between the calls.
 * We want to change the direction every time certain keys are pressed, but not stop the program and wait until one is pressed: introducing `addEventListener`
     * This event listener will watch out for any keypresses, and call a function to deal with them.
@@ -230,7 +230,7 @@ window.addEventListener("keydown", getKeyInput);
 ```javascript
 // On keyboard input, change direction as required
 function getKeyInput(event) {
-  // Only change direction if not travelling along specified axis
+  // Only change direction if not traveling along specified axis
   if ((event.keyCode == 37 || event.keyCode == 65) && HEAD.xDir == 0) { // Left/A was pressed
     HEAD.xDir = -1;
     HEAD.yDir = 0;
@@ -316,7 +316,7 @@ function playGame() {
     * So, just delay the tail from updating (grow from back) a certain number of cycles
 
 ### Implementation
-* Modify `setLink` to accomodate target coloring (global)
+* Modify `setLink` to accommodate target coloring (global)
 ```javascript
 var TARGET_COLOR = "#FFCB05"; // Maize
 ```
@@ -349,7 +349,7 @@ function growSnake() {
   setTarget();
 }
 ```
-* Modify `moveSnake` to accomodate this:
+* Modify `moveSnake` to accommodate this:
 ```javascript
   if (TAIL_DELAY == 0) {
     // Erase tail link from canvas and link array
@@ -373,7 +373,7 @@ function growSnake() {
 * Demonstrate current bug with snake being able to pass through itself. How to check if it's hit itself?
     * Store the position of each link in the snake in a two-dimensional array. Say what?
 * Review arrays: lists of variables. Well, can we put arrays in arrays?
-    * Visuals showing an array going accross horizontally, with each element being an array extending downwards (like a grid!)
+    * Visuals showing an array going across horizontally, with each element being an array extending downwards (like a grid!)
     * We can use each element in this 2-D array as a grid position, and set it to 0 if there is no link there and 1 if there is.
     * This way, it's simple to check if a given grid position has a snake link or not.
 * Can index into first array (returning the array stored there) and index into second array in same line
@@ -448,3 +448,10 @@ function gameOver() {
   clearInterval(INTERVAL_ID);
 }
 ```
+
+## Additional Material
+* Not included in this procedure, but may be included at some point in some lecture:
+    * The process of debugging (techniques, etc.)
+    * Probably towards end: adding features that utilize things we haven't taught (process of learning new feature, implementing, Googling bugs or syntax, etc.)
+    * Encouraging further development of project (giving ideas: style, adding a score and incrementing it, increasing speed as score goes up, etc.)
+    * Hosting on GitHub Pages
