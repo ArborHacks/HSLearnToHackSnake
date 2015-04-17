@@ -3,6 +3,17 @@ This gives a script for both building the Snake game, and explaining the higher-
 
 Each stage is broken down into "Explanation" and "Implementation" sections. The explanation gives a language-independent briefing on the concepts used in building the features in that step, whereas the implementation gives the code that needs to be added to implement it.
 
+### Table of Contents
+* [Stage 0: Create index.html, game script, and HTML5 canvas](#stage-0-create-indexhtml-game-script-and-html5-canvas)
+* [Stage 1: Set up a "grid" on HTML5 canvas for gameboard](#stage-1-set-up-a-grid-on-html5-canvas-for-gameboard)
+* [Stage 2: Setting up and moving Snake](#stage-2-setting-up-and-moving-snake)
+* [Stage 3: Running a function on an interval and getting user input](#stage-3-running-a-function-on-an-interval-and-getting-user-input)
+* [Stage 4: Turning and queues](#stage-4-turning-queues)
+* [Stage 5: Target setting and checking; Growing snake](#stage-5-target-setting-and-checking-growing-snake)
+* [Stage 6: Snake position array](#stage-6-snake-position-array)
+* [Stage 7: Final touches](#stage-7-final-touches)
+* [Additional material](#additional-material)
+
 ## Stage 0: Create index.html, game script, and HTML5 canvas
 
 ### Explanation
