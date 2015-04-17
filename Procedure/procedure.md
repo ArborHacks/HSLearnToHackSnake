@@ -1,3 +1,8 @@
+## Introduction
+This gives a script for both building the Snake game, and explaining the higher-level CS concepts required to build it. It is intended to be taught at a high-school level. This is a guide for the presenter, though it can also be distributed to the participants as a concise summary, and potentially to follow along with. The code that is needed by the end of each stage is included in the respective folder. At the end of each stage, the project will be unbroken. These stages are divided to give logical steps for putting together such a project and designed to give insight into the development process for these sorts of "hackathon" projects.
+
+Each stage is broken down into "Explanation" and "Implementation" sections. The explanation gives a language-independent briefing on the concepts used in building the features in that step, whereas the implementation gives the code that needs to be added to implement it.
+
 ## Stage 0: Create index.html, game script, and HTML5 canvas
 
 ### Explanation
